@@ -14,6 +14,11 @@ mkdir -p $MINICONDA_DIR
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $MINICONDA_DIR/miniconda.sh
 bash $MINICONDA_DIR/miniconda.sh -b -u -p $MINICONDA_DIR
 rm -rf $MINICONDA_DIR/miniconda.sh
+
+# Add Conda Bin to path in .bashrc and .bash_profile
+echo "export PATH=\"$MINICONDA_DIR/bin:$PATH\"" >> "$HOME/.bashrc"
+echo "export PATH=\"$MINICONDA_DIR/bin:$PATH\"" >> "$HOME/.bashrc"
+
 $CONDA_EXE init bash
 
 
