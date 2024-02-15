@@ -17,25 +17,27 @@ rm -rf $MINICONDA_DIR/miniconda.sh
 $CONDA_EXE init bash
 
 
-# Below this line is experimental code which does not work
+
+# Below this line is code that must be run manually
 # source "$HOME/.bashrc"
-# if test ! -f $CONDA_EXE; then
-#   echo "Could not find conda executable"
-#   exit
-# else
-#   echo "Initializing conda bash environment..."
-#   $CONDA_EXE init bash
-# fi
 
-# echo "Env Name: "$CONDA_ENV_NAME
-# # Create/activate conda environment
-# if $CONDA_EXE env list | grep -q $CONDA_ENV_NAME;
-# then
-#   echo "Environment $CONDA_ENV_NAME exists"
-# else
-#   echo "Environment $CONDA_ENV_NAME will be created..."
-#   $CONDA_EXE create --name $CONDA_ENV_NAME python=3.11 -y
-# fi
+# Create environments for jupyter notebook and for pytorch
+# conda create --name jupyter python=3.9 -y
+# conda activate jupyter
+# mkdir jupyter
 
-# $CONDA_EXE init bash
-# $CONDA_EXE activate $CONDA_ENV_NAME
+# conda install -c conda-forge notebook -y
+# conda install -c conda-forge nb_conda_kernels -y
+# conda install nb_conda -y
+
+# screen -S jupyter
+
+# file:///users/gwitske/.local/share/jupyter/runtime/jpserver-15370-open.html
+# http://localhost:5910/tree?token=7c26565964a4007e5ba2eda985ceb43dd13114d35f60714c
+# http://127.0.0.1:5910/tree?token=7c26565964a4007e5ba2eda985ceb43dd13114d35f60714c
+# ssh -L 59000:localhost:5910 gwitske@pc417.emulab.net
+
+# conda create --name pytorch python=3.9 -y
+# conda activate pytorch
+# mkdir pytorch
+# conda install pytorch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 cpuonly -c pytorch
