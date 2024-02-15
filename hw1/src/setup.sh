@@ -15,10 +15,6 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O $M
 bash $MINICONDA_DIR/miniconda.sh -b -u -p $MINICONDA_DIR
 rm -rf $MINICONDA_DIR/miniconda.sh
 
-# Add Conda Bin to path in .bashrc and .bash_profile
-echo "export PATH=\"$MINICONDA_DIR/bin:$PATH\"" >> "$HOME/.bashrc"
-echo "export PATH=\"$MINICONDA_DIR/bin:$PATH\"" >> "$HOME/.bashrc"
-
 $CONDA_EXE init bash
 
 
@@ -34,6 +30,7 @@ $CONDA_EXE init bash
 # conda install -c conda-forge notebook -y
 # conda install -c conda-forge nb_conda_kernels -y
 # conda install nb_conda -y
+# conda install pytorch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 cpuonly -c pytorch
 
 # screen -S jupyter
 
@@ -41,8 +38,3 @@ $CONDA_EXE init bash
 # http://localhost:5910/tree?token=7c26565964a4007e5ba2eda985ceb43dd13114d35f60714c
 # http://127.0.0.1:5910/tree?token=7c26565964a4007e5ba2eda985ceb43dd13114d35f60714c
 # ssh -L 59000:localhost:5910 gwitske@pc417.emulab.net
-
-# conda create --name pytorch python=3.9 -y
-# conda activate pytorch
-# mkdir pytorch
-# conda install pytorch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 cpuonly -c pytorch
