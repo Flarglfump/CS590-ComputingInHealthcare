@@ -20,5 +20,5 @@ if [! -d $DATADIR]
 fi
 
 for i in ${!DATAFILE_URLS[@]}; do
-    wget "$DATAFILE_URLS[$i]" -o "$DATADIR/data$i.bed.gz
+    wget "$DATAFILE_URLS[$i]" -o "$DATADIR/data$i.bed.gz"
 done
