@@ -1,4 +1,4 @@
-#!/opt/homebrew/bin/bash
+#/usr/bin/bash
 
 DATADIR="data" 
 
@@ -20,8 +20,6 @@ if [ ! -d "$DATADIR" ]; then
     mkdir "$DATADIR"
 fi
 
-cd $DATADIR
-
 for i in "${!DATAFILE_URLS[@]}"; do
-    wget "${DATAFILE_URLS[$i]}"
+    wget "${DATAFILE_URLS[$i]}" "-O" "$DATADIR/data$i.bed.gz" 
 done
