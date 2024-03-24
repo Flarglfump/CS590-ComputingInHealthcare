@@ -16,7 +16,6 @@ DATAFILE_URLS=(
 )
 
 if [ ! -d "$DATADIR" ]; then
-    echo "$DATADIR does not exist!"
     mkdir "$DATADIR"
 fi
 

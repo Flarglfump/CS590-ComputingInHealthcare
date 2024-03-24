@@ -13,14 +13,23 @@ if [ ! -f "$REF_GENOME" ]; then
     exit
 fi
 
-if [ ! -d "$DATADIR/txt" ]; then
-    mkdir "$DATADIR/txt"
+if [ ! -d "$DATADIR/pos/txt" ]; then
+    mkdir "$DATADIR/pos/txt"
+fi
+if [ ! -d "$DATADIR/neg/txt" ]; then
+    mkdir "$DATADIR/neg/txt"
 fi
 
-for FILE in $DATADIR/*.bed; do
+for FILE in $DATADIR/pos/*.bed; do
     FILEBASENAME=$(basename -- "$FILE")
     FILEBASENAME="${FILEBASENAME%.*}"
-    echo bedtools getfasta -fi "$REF_GENOME" -bed "$FILE" -fo "$DATADIR/txt/$FILEBASENAME.txt"
-    bedtools getfasta -fi "$REF_GENOME" -bed "$FILE" -fo "$DATADIR/txt/$FILEBASENAME.txt"
+    echo bedtools getfasta -fi "$REF_GENOME" -bed "$FILE" -fo "$DATADIR/pos/txt/$FILEBASENAME.txt"
+    bedtools getfasta -fi "$REF_GENOME" -bed "$FILE" -fo "$DATADIR/pos/txt/$FILEBASENAME.txt"
+done
 
+for FILE in $DATADIR/neg/*.bed; do
+    FILEBASENAME=$(basename -- "$FILE")
+    FILEBASENAME="${FILEBASENAME%.*}"
+    echo bedtools getfasta -fi "$REF_GENOME" -bed "$FILE" -fo "$DATADIR/neg/txt/$FILEBASENAME.txt"
+    bedtools getfasta -fi "$REF_GENOME" -bed "$FILE" -fo "$DATADIR/neg/txt/$FILEBASENAME.txt"
 done
