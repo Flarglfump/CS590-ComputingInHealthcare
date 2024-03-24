@@ -104,14 +104,14 @@ remaining = combinedCountTotal
 i = 0
 while (remaining >= combinedCountTarget):
   remaining -= combinedLenList[i][1]
-  if (remaining < combinedLenList):
+  if (remaining < combinedCountTarget):
     remaining += combinedLenList[i][1]
     break
   i += 1
 
 cutoffLen = combinedLenList[i][0]
 
-print(f"Calculated optimal cutoff length: {cutoffLen}")
+print(f"Cutoff length: {cutoffLen}")
 
 posSeqCounts = []
 outpath = os.path.join(posInputDir, "pos_combined.txt")
@@ -127,12 +127,13 @@ with open(outpath, "w") as outfile:
         for line in src:
           lineLen = len(line)
           if (lineLen >= cutoffLen):
-            outfile.write(f"{line[:cutoffLen]}\n")
+            outfile.write(f"{line[:cutoffLen]}")
             seqCount += 1
+      posSeqCounts.append([filename, seqCount])
     else:
       print("File \"", filepath, "\" cannot be determined to be a valid trimmed nucleotide sequence file\n", sep='')
 
-    posSeqCounts.append([filename, seqCount]) 
+    
 
 negSeqCounts = []
 outpath = os.path.join(negInputDir, "neg_combined.txt")
@@ -150,32 +151,24 @@ with open(outpath, "w") as outfile:
           if (lineLen >= cutoffLen):
             outfile.write(f"{line[:cutoffLen]}\n")
             seqCount += 1
+      negSeqCounts.append([filename, seqCount])
     else:
       print("File \"", filepath, "\" cannot be determined to be a valid trimmed nucleotide sequence file\n", sep='')
 
-    negSeqCounts.append([filename, seqCount])
-
 
 totPosSeq = sum(i[1] for i in posSeqCounts)
-maxFnameLen = max(posSeqCounts, key=len(operator.itemgetter(0)))
-maxCountLen = max(posSeqCounts, key=len(str(operator.itemgetter(1))))
+
+posSeqCounts = sorted(posSeqCounts, key=operator.itemgetter(0))
+negSeqCounts = sorted(negSeqCounts, key=operator.itemgetter(0))
 
 print("\nPositive sequence file (pos_combined.txt):")
-for fname, numSeq in posSeqCounts:
-  line = (f"0: <{maxFnameLen + 5}").format(fname) + (f"0: >{maxCountLen}").format(str(numSeq))
-  print(line)
-
-line = (f"0: <{maxFnameLen + 5}").format("Total:") + (f"0: >{maxCountLen}").format(str(totPosSeq))
-print(line)
+for count in posSeqCounts:
+  print(f"{count[0]}:\t{count[1]}")
+print(f"Total:\t{totPosSeq}")
 
 totNegSeq = sum(i[1] for i in negSeqCounts)
-maxFnameLen = max(negSeqCounts, key=len(operator.itemgetter(0)))
-maxCountLen = max(negSeqCounts, key=len(str(operator.itemgetter(1))))
-
 print("\nNegative sequence file (neg_combined.txt):")
-for fname, numSeq in negSeqCounts:
-  line = (f"0: <{maxFnameLen + 5}").format(fname) + (f"0: >{maxCountLen}").format(str(numSeq))
-  print(line)
+for count in negSeqCounts:
+  print(f"{count[0]}:\t{count[1]}")
+print(f"Total:\t{totNegSeq}")
 
-line = (f"0: <{maxFnameLen + 5}").format("Total:") + (f"0: >{maxCountLen}").format(str(totNegSeq))
-print(line)

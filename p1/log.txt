@@ -1,0 +1,27 @@
+Cutoff length: 301
+
+Positive sequence file (pos_combined.txt):
+data0_trimmed.txt:      9376
+data1_trimmed.txt:      12570
+data2_trimmed.txt:      5084
+data3_trimmed.txt:      14004
+data4_trimmed.txt:      14105
+data5_trimmed.txt:      11559
+data6_trimmed.txt:      5298
+data7_trimmed.txt:      5621
+data8_trimmed.txt:      11324
+data9_trimmed.txt:      10570
+Total:  99511
+
+Negative sequence file (neg_combined.txt):
+data0_neg_trimmed.txt:  40316
+data1_neg_trimmed.txt:  59086
+data2_neg_trimmed.txt:  35000
+data3_neg_trimmed.txt:  52949
+data4_neg_trimmed.txt:  53175
+data5_neg_trimmed.txt:  45868
+data6_neg_trimmed.txt:  44664
+data7_neg_trimmed.txt:  45173
+data8_neg_trimmed.txt:  72311
+data9_neg_trimmed.txt:  46883
+Total:  495425
