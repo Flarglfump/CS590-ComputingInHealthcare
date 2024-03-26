@@ -9,7 +9,7 @@ if [ ! -d "$SRCCEREFDIR" ]; then
 fi
 
 if [ ! -d "$REFDIR" ]; then
-  mkdir ${REFDIR}
+  mkdir -p ${REFDIR}
 fi
 
 for FILE in $SRCCEREFDIR/*; do 
