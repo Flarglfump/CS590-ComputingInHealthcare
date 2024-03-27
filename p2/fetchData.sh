@@ -46,3 +46,15 @@ TCELL_FILE_URLS=(
   "https://www.encodeproject.org/files/ENCFF267DDX/@@download/ENCFF267DDX.bed.gz"
   "https://www.encodeproject.org/files/ENCFF354VIQ/@@download/ENCFF354VIQ.bed.gz" # 44
 )
+
+DATADIR="data"
+
+if [ ! -d "$DATADIR" ]; then
+  mkdir -p $DATADIR
+fi
+
+cd "$DATADIR"
+
+for FILE in *; do
+  wget "$FILE"
+done
