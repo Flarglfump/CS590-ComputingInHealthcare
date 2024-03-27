@@ -1,5 +1,3 @@
-condaEnvName="CS590-p2"
-
 TCELL_FILE_URLS=(
   "https://www.encodeproject.org/files/ENCFF105ZAX/@@download/ENCFF105ZAX.bed.gz" # 1
   "https://www.encodeproject.org/files/ENCFF273DGN/@@download/ENCFF273DGN.bed.gz"
@@ -47,7 +45,7 @@ TCELL_FILE_URLS=(
   "https://www.encodeproject.org/files/ENCFF354VIQ/@@download/ENCFF354VIQ.bed.gz" # 44
 )
 
-DATADIR="data"
+DATADIR="data/pos"
 
 if [ ! -d "$DATADIR" ]; then
   mkdir -p $DATADIR
@@ -55,6 +53,6 @@ fi
 
 cd "$DATADIR"
 
-for FILE in *; do
-  wget "$FILE"
+for i in "${!TCELL_FILE_URLS[@]}"; do
+  wget "${TCELL_FILE_URLS[$i]}" "-O" "./sample$i.bed.gz" 
 done
