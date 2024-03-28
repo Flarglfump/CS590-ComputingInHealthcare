@@ -14,10 +14,11 @@ if [ ! -f "$REF_GENOME" ]; then
 fi
 
 if [ ! -d "$DATADIR/pos" ]; then
-    mkdir "$DATADIR/pos"
+    echo "$DATADIR/pos does not exist!"
+    exit
 fi
 if [ ! -d "$DATADIR/neg" ]; then
-    mkdir "$DATADIR/neg"
+    echo "$DATADIR/neg does not exist!"
 fi
 
 # Positive Files

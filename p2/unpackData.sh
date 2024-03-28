@@ -1,5 +1,3 @@
-#!/usr/bin/bash
-
 DATADIR="data/pos" 
 
 if [ ! -d "$DATADIR" ]; then
